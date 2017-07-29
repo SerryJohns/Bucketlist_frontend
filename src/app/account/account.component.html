@@ -1,3 +1,25 @@
-<p>
-  account works!
-</p>
+ <div class="auth-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel-heading welcome-text">
+          WELCOME TO THE BUCKETLIST
+        </div>
+        <div class="panel panel-login">
+          <app-login *ngIf="displayLogin"></app-login>      
+          <app-register *ngIf="displayRegister"></app-register>      
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6 tabs">
+                <a routerLink="/login" class="active" id="login-form-link"><div class="login">LOGIN</div></a>
+              </div>
+              <div class="col-xs-6 tabs">
+                <a routerLink="/register" id="register-form-link"><div class="register">REGISTER</div></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>

@@ -3,16 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { routing } from './app.route';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { FooterComponent } from './footer/footer.component';
-import { routing } from './app.route';
+import { LoginComponent } from './account/login/login.account.component';
+import { RegisterComponent } from './account/register/register.account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
