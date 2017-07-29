@@ -9,6 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './account/login/login.account.component';
 import { RegisterComponent } from './account/register/register.account.component';
+import { BucketlistComponent } from './bucketlist/bucketlist.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RegisterComponent } from './account/register/register.account.component
     AccountComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BucketlistComponent
   ],
   imports: [
     BrowserModule,
