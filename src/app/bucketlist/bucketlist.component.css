@@ -1,6 +1,8 @@
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,700,500);
+
 .navbar-default {
-  background-color: #545454;
+  background-color: #4d778c;
   border-color: rgba(34, 34, 34, 0.05);
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
@@ -82,4 +84,13 @@
   .navbar-default.affix .nav > li > a:focus:hover {
     color: #fdcc52;
   }
+}
+
+section {
+  padding: 100px 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight:100;
+}
+section h2 {
+  font-size: 50px;
 }
