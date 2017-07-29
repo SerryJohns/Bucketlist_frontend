@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/SerryJohns/Bucketlist_frontend)
+[![Code Climate](https://codeclimate.com/github/SerryJohns/Bucketlist_frontend/badges/gpa.svg)](https://codeclimate.com/github/SerryJohns/Bucketlist_frontend)
 
 # Bucketlist
 
