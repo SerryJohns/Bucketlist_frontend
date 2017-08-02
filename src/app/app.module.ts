@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { routing } from './app.route';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from './services/auth/auth.guard';
+
+import { routing, appRoutingProviders } from './app.route';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { FooterComponent } from './footer/footer.component';
@@ -13,6 +17,7 @@ import { RegisterComponent } from './account/register/register.account.component
 import { BucketlistComponent } from './bucketlist/bucketlist.component';
 
 import { LoginService } from './services/auth/login.service';
+import { GetUsersService } from './services/auth/get-users.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,14 @@ import { LoginService } from './services/auth/login.service';
     HttpModule,
     routing
       ],
-  providers: [ LoginService ],
+  providers: [
+    AUTH_PROVIDERS,
+    AuthService,
+    AuthGuard,
+    appRoutingProviders,
+    LoginService,
+    GetUsersService
+    ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
