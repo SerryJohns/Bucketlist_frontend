@@ -24,7 +24,8 @@ export function toUser(result: any): User {
     firstname: result.firstname,
     surname: result.surname,
     email: result.email,
-    username: result.username
+    username: result.username,
+    password: result.password
   });
   return user;
 }

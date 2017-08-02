@@ -1,2 +1,27 @@
-<router-outlet></router-outlet>
-<app-footer *ngIf="displayLogin"></app-footer>
+<nav *ngIf="authService.isAuthenticated()" id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#">The Bucketlist</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#">New Bucketlist</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#">Profile</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/login" (click)="authService.logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="container">
+    <router-outlet></router-outlet>
+</section>
+<app-footer *ngIf="authService.isAuthenticated()"></app-footer>

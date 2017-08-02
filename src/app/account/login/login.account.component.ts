@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { LoginService } from '../../services/auth/login.service';
 import { GetUsersService } from '../../services/auth/get-users.service';
@@ -17,8 +16,7 @@ import { toUser } from '../../services/auth/get-users.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private loginService: LoginService,
-    private router: Router
+    private loginService: LoginService
     ) { }
 
   private errMsg: string;
@@ -29,36 +27,26 @@ export class LoginComponent implements OnInit {
     
   }
 
-  private login() {
-    let response: any;
-    response = this.loginService.login(this.model);
+  private login(): void {
+    let response: any = this.loginService.login(this.model);
     response.subscribe(
       result => {
-        this.user = result.data? toUser(result.data): null;
-        if (this.user){
-          localStorage.setItem(
-          'currentUser', JSON.stringify(this.user)
-          );
-          localStorage.setItem(
-            'id_token', JSON.stringify(result.auth_token)
-          
-          );
-          this.router.navigate(['bucketlist']);
-        } else {
-          this.errMsg = "Sorry! Some error occurred!";
+        try {
+          this.errMsg = result.errMsg;
+        } catch (TypeError) {
+          this.errMsg = "";
         }
       },
       err => {
-        console.log(err);
-        if (err.status == 403) {
+        if (err.status === 403) {
           this.errMsg = "Invalid username or password!";
-        } else if (err.status == 400) {
+        } else if (err.status === 400) {
           this.errMsg = "Username and password required!";
         } else {
           this.errMsg = "Server Error!";
         }
       }
-    )
+    );
   }
 
 }
