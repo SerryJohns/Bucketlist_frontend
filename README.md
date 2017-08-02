@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/SerryJohns/Bucketlist_frontend/badges/gpa.svg)](https://codeclimate.com/github/SerryJohns/Bucketlist_frontend)
+
 # Bucketlist
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
