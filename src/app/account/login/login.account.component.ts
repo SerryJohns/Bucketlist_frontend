@@ -22,10 +22,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   private errMsg: string;
-  private model: {
-    username: "serry",
-    password: "pass"
-  }
+  private model: any = { }
   user: User;
 
   ngOnInit() {
@@ -34,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   private login() {
     let response: any;
-    response = this.loginService.login({ username: "serry", password: "pass"});
+    response = this.loginService.login(this.model);
     response.subscribe(
       result => {
         this.user = result.data? toUser(result.data): null;
@@ -58,7 +55,7 @@ export class LoginComponent implements OnInit {
         } else if (err.status == 400) {
           this.errMsg = "Username and password required!";
         } else {
-          this.errMsg = JSON.stringify(err);
+          this.errMsg = "Server Error!";
         }
       }
     )
