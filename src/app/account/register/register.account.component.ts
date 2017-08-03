@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { tokenNotExpired } from "angular2-jwt/angular2-jwt";
 
 import { RegisterService } from '../../services/auth/register.service';
 import { GetUsersService } from '../../services/auth/get-users.service';
@@ -17,7 +18,8 @@ import { toUser } from '../../services/auth/get-users.service';
 export class RegisterComponent implements OnInit {
 
   constructor(
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private router: Router
     ) { }
 
   private errMsg: string;
@@ -25,6 +27,9 @@ export class RegisterComponent implements OnInit {
   user: User;
 
   ngOnInit() {
+    if (tokenNotExpired) {
+      this.router.navigate(['bucketlists']);
+    }
   }
 
   private createAccount(): void {

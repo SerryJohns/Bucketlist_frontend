@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
+import { currentUser } from './account/currentUser';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,12 @@ import { AuthService } from './services/auth/auth.service';
     styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private authService: AuthService) { }
-     title = 'My Bucketlist';
+     title = 'The Bucketlist';
+     currentUser: any;
+
+    ngOnInit() {
+        this.currentUser = currentUser.firstname + " " + currentUser.surname;
+     }
 }

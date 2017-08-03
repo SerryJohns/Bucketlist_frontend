@@ -7,11 +7,18 @@ import { AccountComponent } from './account/account.component'
 import { BucketlistComponent } from './bucketlist/bucketlist.component'
 
 export const routes: Routes = [
-    { path: '', component: AccountComponent },
-    { path: 'login', component: AccountComponent },
+    { 
+        path: '',
+        redirectTo: 'bucketlists',
+        pathMatch: 'full'
+    },
+    { 
+        path: 'login', 
+        component: AccountComponent
+    },
     { path: 'register', component: AccountComponent },
     { 
-        path: 'bucketlist', 
+        path: 'bucketlists', 
         component: BucketlistComponent,
         canActivate: [ AuthGuard ]
     }

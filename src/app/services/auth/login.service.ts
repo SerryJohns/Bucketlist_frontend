@@ -35,7 +35,7 @@ export class LoginService {
           localStorage.setItem(
             'id_token', JSON.stringify(result.auth_token)
           );
-          this.router.navigate(['bucketlist']);
+          this.router.navigate(['bucketlists']);
         } else {
           return { errMsg: "Sorry! Some error occurred!" };
         }
