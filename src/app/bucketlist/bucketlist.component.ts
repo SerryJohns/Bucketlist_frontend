@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bucketlist } from './bucketlist';
+import { ModalModule } from 'ng2-modal';
 
 import { AuthService } from './../services/auth/auth.service';
 import { BucketlistService } from './../services/bucketlist/bucketlist.service';
@@ -19,10 +20,11 @@ export class BucketlistComponent implements OnInit {
 
   private bucketlists: Bucketlist[] = [];
   private msg;
+  selectedBucketlist: Bucketlist;
+  noItems = true;
 
   ngOnInit() {
     this.getBucketLists();
-    console.log(this.bucketlists);
   }
 
   private getBucketLists(): void {
@@ -33,7 +35,7 @@ export class BucketlistComponent implements OnInit {
         let pagination = result.pagination;
         
         if (!bucketlists) {
-          this.msg = "No Bucketlists created!"
+          this.msg = "No Bucketlists created!";
         }
 
         bucketlists.forEach(bucketlist => {
@@ -45,6 +47,10 @@ export class BucketlistComponent implements OnInit {
         console.log('error');
       }
     );
+  }
+
+  private bucketlistClick(bucketlist: Bucketlist): void {
+    this.selectedBucketlist = bucketlist;
   }
 
 }

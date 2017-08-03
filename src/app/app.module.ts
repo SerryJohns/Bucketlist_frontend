@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-// import { AUTH_PROVIDERS } from 'angular2-jwt';
-import { AuthService } from './services/auth/auth.service';
-import { AuthGuard } from './services/auth/auth.guard';
+import { ModalModule } from 'ng2-modal';
 
 import { routing, appRoutingProviders } from './app.route';
 import { AppComponent } from './app.component';
@@ -15,12 +13,16 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './account/login/login.account.component';
 import { RegisterComponent } from './account/register/register.account.component';
 import { BucketlistComponent } from './bucketlist/bucketlist.component';
+import { ItemComponent } from './item/item.component';
+import { CreateBucketlistComponent } from './bucketlist/create-bucketlist/create-bucketlist.component';
+
 
 import { LoginService } from './services/auth/login.service';
 import { RegisterService } from './services/auth/register.service';
 import { GetUsersService } from './services/auth/get-users.service';
 import { BucketlistService } from './services/bucketlist/bucketlist.service';
-import { ItemComponent } from './item/item.component';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from './services/auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -30,16 +32,17 @@ import { ItemComponent } from './item/item.component';
     LoginComponent,
     RegisterComponent,
     BucketlistComponent,
-    ItemComponent
+    ItemComponent,
+    CreateBucketlistComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    ModalModule
       ],
   providers: [
-    // AUTH_PROVIDERS,
     AuthService,
     AuthGuard,
     appRoutingProviders,

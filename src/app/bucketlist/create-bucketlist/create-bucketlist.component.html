@@ -1,0 +1,15 @@
+<div class="col-lg-2">
+    <button class="btn btn-sm btn-primary" (click)="myModal.open()">New</button>
+</div>
+
+<modal #myModal>
+    <modal-header>
+      Create new Bucketlist
+    </modal-header>
+    <modal-content>
+        Hello Modal!
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="myModal.close()">close</button>
+    </modal-footer>
+</modal>
