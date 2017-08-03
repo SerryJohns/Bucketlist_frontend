@@ -19,7 +19,7 @@ export function handleError(error: any) {
 }
 
 export function toUser(result: any): User {
-  let user = <User>({
+  return <User>({
     id: result.id,
     firstname: result.firstname,
     surname: result.surname,
@@ -27,7 +27,6 @@ export function toUser(result: any): User {
     username: result.username,
     password: result.password
   });
-  return user;
 }
 
 @Injectable()

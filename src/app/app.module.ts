@@ -19,6 +19,8 @@ import { BucketlistComponent } from './bucketlist/bucketlist.component';
 import { LoginService } from './services/auth/login.service';
 import { RegisterService } from './services/auth/register.service';
 import { GetUsersService } from './services/auth/get-users.service';
+import { BucketlistService } from './services/bucketlist/bucketlist.service';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { GetUsersService } from './services/auth/get-users.service';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    BucketlistComponent
+    BucketlistComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { GetUsersService } from './services/auth/get-users.service';
     appRoutingProviders,
     LoginService,
     RegisterService,
-    GetUsersService
+    GetUsersService,
+    BucketlistService
     ],
   bootstrap: [ AppComponent ]
 })
