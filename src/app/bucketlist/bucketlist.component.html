@@ -21,7 +21,7 @@
                     <tr>
                         <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
                         <td>
-                            <span class="glyphicon glyphicon-edit"></span>
+                            <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
                             <span class="glyphicon glyphicon-tasks"></span>
                             <span class="glyphicon glyphicon-remove"></span>
                         </td>

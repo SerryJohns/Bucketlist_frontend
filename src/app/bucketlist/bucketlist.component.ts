@@ -54,5 +54,5 @@ export class BucketlistComponent implements OnInit {
   private bucketlistClick(bucketlist: Bucketlist): void {
     this.selectedBucketlist = bucketlist;
   }
-
+  
 }

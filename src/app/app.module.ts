@@ -15,6 +15,7 @@ import { RegisterComponent } from './account/register/register.account.component
 import { BucketlistComponent } from './bucketlist/bucketlist.component';
 import { ItemComponent } from './item/item.component';
 import { CreateBucketlistComponent } from './bucketlist/create-bucketlist/create-bucketlist.component';
+import { EditBucketlistComponent } from './bucketlist/edit-bucketlist/edit-bucketlist.component';
 
 
 import { LoginService } from './services/auth/login.service';
@@ -33,7 +34,8 @@ import { AuthGuard } from './services/auth/auth.guard';
     RegisterComponent,
     BucketlistComponent,
     ItemComponent,
-    CreateBucketlistComponent
+    CreateBucketlistComponent,
+    EditBucketlistComponent
   ],
   imports: [
     BrowserModule,

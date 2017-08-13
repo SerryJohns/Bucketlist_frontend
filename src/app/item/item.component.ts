@@ -13,9 +13,6 @@ export class ItemComponent implements OnInit {
   noItems: boolean = true;
 
   ngOnInit() {
-    // if (this.bucketlist.items.length) {
-    //   this.noItems = false;
-    // }
   }
 
 }
