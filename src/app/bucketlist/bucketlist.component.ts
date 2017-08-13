@@ -5,6 +5,7 @@ import { ModalModule } from 'ng2-modal';
 import { AuthService } from './../services/auth/auth.service';
 import { BucketlistService } from './../services/bucketlist/bucketlist.service';
 import { toBucketlist } from "../services/bucketlist/bucketlist_utils";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-bucketlist',
@@ -15,7 +16,8 @@ export class BucketlistComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private bucketlistService: BucketlistService
+    private bucketlistService: BucketlistService,
+    private router: Router
     ) { }
 
   private bucketlists: Bucketlist[] = [];
@@ -44,7 +46,7 @@ export class BucketlistComponent implements OnInit {
         });
       },
       error => {
-        console.log('error');
+        console.log(error);
       }
     );
   }

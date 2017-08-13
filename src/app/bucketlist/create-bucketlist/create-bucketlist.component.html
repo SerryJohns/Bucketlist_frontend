@@ -1,15 +1,26 @@
 <div class="col-lg-2">
     <button class="btn btn-sm btn-primary" (click)="myModal.open()">New</button>
 </div>
-
-<modal #myModal>
+<form id="bucketlist-form" method="post" (ngSubmit)="createBucketlist.form.valid && submitBucketlist()" #createBucketlist="ngForm" role="form" novalidate>
+  <modal #myModal>
     <modal-header>
       Create new Bucketlist
     </modal-header>
     <modal-content>
-        Hello Modal!
+      <div class="form-group">
+          <input type="text" [(ngModel)]="model.name" name="name" class="form-control" placeholder="Bucketlist name" value=""/>
+      </div>
+      <div class="form-group">
+          <textarea [(ngModel)]="model.description" name="description" class="form-control" placeholder="Description" value=""></textarea>
+      </div>
+      <div class="form-group">
+          <input type="text" [(ngModel)]="model.interests" name="interests" class="form-control" placeholder="Interests" value="">
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errMsg">{{ errMsg }}</div>
     </modal-content>
     <modal-footer>
-        <button class="btn btn-primary" (click)="myModal.close()">close</button>
+      <input type="submit" name="bucketlist-submit" class="btn btn-success" value="Submit">
+      <button class="btn btn-primary" (click)="myModal.close()">close</button>
     </modal-footer>
-</modal>
+  </modal>
+</form>
