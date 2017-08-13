@@ -16,8 +16,10 @@ export function toBucketlist(result: any): Bucketlist {
 
 function sendItems(items: any): Item[] {
     let items_array: Item[] = [];
-    items.forEach(item => {
-        items_array.push(toItem(item));
-    });
+    if (items) {
+        items.forEach(item => {
+            items_array.push(toItem(item));
+        });
+    }
     return items_array;
 }
