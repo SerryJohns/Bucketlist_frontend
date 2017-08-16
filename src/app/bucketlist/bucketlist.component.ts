@@ -6,17 +6,20 @@ import { AuthService } from './../services/auth/auth.service';
 import { BucketlistService } from './../services/bucketlist/bucketlist.service';
 import { toBucketlist } from "../services/bucketlist/bucketlist_utils";
 import { Router } from "@angular/router";
+import { DeleteBucketlistService } from "../services/bucketlist/delete-bucketlist.service";
 
 @Component({
   selector: 'app-bucketlist',
   templateUrl: './bucketlist.component.html',
-  styleUrls: ['./bucketlist.component.css']
+  styleUrls: ['./bucketlist.component.css'],
+  providers: [ DeleteBucketlistService ]
 })
 export class BucketlistComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
     private bucketlistService: BucketlistService,
+    private deleteBucketlistService: DeleteBucketlistService,
     private router: Router
     ) { }
 
@@ -54,5 +57,17 @@ export class BucketlistComponent implements OnInit {
   private bucketlistClick(bucketlist: Bucketlist): void {
     this.selectedBucketlist = bucketlist;
   }
-  
+
+  private deleteBucketlist(id: any): void {
+    let response = this.deleteBucketlistService.deleteBucketlist(id.toString());
+    response.subscribe(
+      result => {
+        console.log(result);
+        this.getBucketLists();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

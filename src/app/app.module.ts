@@ -24,6 +24,7 @@ import { GetUsersService } from './services/auth/get-users.service';
 import { BucketlistService } from './services/bucketlist/bucketlist.service';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
+import { CreateItemComponent } from './item/create-item/create-item.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuthGuard } from './services/auth/auth.guard';
     BucketlistComponent,
     ItemComponent,
     CreateBucketlistComponent,
-    EditBucketlistComponent
+    EditBucketlistComponent,
+    CreateItemComponent
   ],
   imports: [
     BrowserModule,

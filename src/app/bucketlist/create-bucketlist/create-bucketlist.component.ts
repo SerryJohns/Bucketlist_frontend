@@ -38,10 +38,10 @@ export class CreateBucketlistComponent implements OnInit {
         closeModal(this.closeBtn);
       },
       err => {
-        if (err.status == 400) {
+        if (err.status === 400) {
           this.errMsg = "Missing required parameters.";
         } else {
-          "Server Error!";
+          this.errMsg = "Server Error!";
         }
       }
     );
