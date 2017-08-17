@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Item } from "../item";
 
 @Component({
   selector: 'app-edit-item',
@@ -9,7 +10,14 @@ export class EditItemComponent implements OnInit {
 
   constructor() { }
 
+  @Input() item: Item;
+  private model: any = { };
+  
   ngOnInit() {
+    this.model = this.item;
   }
+  
+  private updateItem(): void {
 
+  }
 }
