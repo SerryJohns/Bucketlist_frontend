@@ -29,6 +29,8 @@ import { CreateItemComponent } from './item/create-item/create-item.component';
 import { EditItemComponent } from './item/edit-item/edit-item.component';
 import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,8 @@ import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search
     HttpModule,
     routing,
     ModalModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule
       ],
   providers: [
     AuthService,
