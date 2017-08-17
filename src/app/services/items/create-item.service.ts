@@ -18,8 +18,8 @@ export class CreateItemService {
 
   constructor(private http: Http) { }
 
-  createBucketlistItem(bucketlist_id: string, body: Item) {
-    let url: string = baseUrl + '/bucketlists/' + bucketlist_id + '/items/'
+  createBucketlistItem(bucketlist_id: number, body: Item) {
+    let url: string = baseUrl + '/bucketlists/' + bucketlist_id + '/items/';
     let bodyString = JSON.stringify(body);
     this.headers.set("Authorization", TOKEN)
     let options = new RequestOptions({ headers: this.headers });

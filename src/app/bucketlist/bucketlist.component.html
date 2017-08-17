@@ -22,7 +22,7 @@
                         <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
                         <td>
                             <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
-                            <create-item [bucketlist]="bucketlist.id"></create-item>
+                            <create-item [bucketlist]="bucketlist"></create-item>
                             <button (click)="deleteBucketlist(bucketlist.id)" class="btn btn-sm btn-default">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>

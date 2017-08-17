@@ -6,6 +6,9 @@
         <table class="table">
           <tr *ngFor="let item of bucketlist.items">
             <td>{{ item.name }}</td>
+            <td>
+              
+            </td>
           </tr>
           <tr *ngIf="!this.bucketlist.items.length"><td>No items found!</td></tr>
         </table>
