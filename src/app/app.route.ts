@@ -5,6 +5,7 @@ import { AuthGuard } from './services/auth/auth.guard';
 
 import { AccountComponent } from './account/account.component'
 import { BucketlistComponent } from './bucketlist/bucketlist.component'
+import { BucketlistSearchComponent } from "./bucketlist-search/bucketlist-search.component";
 
 export const routes: Routes = [
     { 
@@ -20,6 +21,11 @@ export const routes: Routes = [
     { 
         path: 'bucketlists', 
         component: BucketlistComponent,
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'search',
+        component: BucketlistSearchComponent,
         canActivate: [ AuthGuard ]
     }
 ];

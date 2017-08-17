@@ -2,16 +2,11 @@
     <div class="row col-lg-12" style="padding: 10px;">
        <create-bucketlist></create-bucketlist>
         <div class="col-lg-10">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for bucketlist...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                </span>
-            </div>
+            <input type="text" [(ngModel)]="term" name="search" class="form-control" placeholder="Search for bucketlist...">
         </div>
     </div>
     <div class="bucketlist-container col-lg-12">
-        <div *ngFor="let bucketlist of bucketlists">
+        <div *ngFor="let bucketlist of bucketlists | filter: term">
             <div class="panel panel-info">
                 <div class="panel-heading" (click)="bucketlistClick(bucketlist)">
                     <b>{{ bucketlist.name }}</b>

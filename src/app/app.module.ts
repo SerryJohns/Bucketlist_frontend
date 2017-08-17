@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { ModalModule } from 'ng2-modal';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { routing, appRoutingProviders } from './app.route';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 import { CreateItemComponent } from './item/create-item/create-item.component';
 import { EditItemComponent } from './item/edit-item/edit-item.component';
+import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +41,16 @@ import { EditItemComponent } from './item/edit-item/edit-item.component';
     CreateBucketlistComponent,
     EditBucketlistComponent,
     CreateItemComponent,
-    EditItemComponent
+    EditItemComponent,
+    BucketlistSearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    ModalModule
+    ModalModule,
+    Ng2SearchPipeModule
       ],
   providers: [
     AuthService,
