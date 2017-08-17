@@ -32,7 +32,6 @@ export class CreateItemComponent implements OnInit {
     let response: any = this.createItemService.createBucketlistItem(this.bucketlist.id, this.item);
     response.subscribe(
       result => {
-        console.log(result);
         closeModal(this.closeBtn);
       },
       err => {

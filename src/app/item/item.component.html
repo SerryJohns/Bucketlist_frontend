@@ -7,7 +7,7 @@
           <tr *ngFor="let item of bucketlist.items">
             <td>{{ item.name }}</td>
             <td>
-              <edit-item [item]="item" ></edit-item>
+              <edit-item [item]="item" [bucketlistID]="bucketlist.id"></edit-item>
             </td>
           </tr>
           <tr *ngIf="!this.bucketlist.items.length"><td>No items found!</td></tr>
