@@ -8,6 +8,9 @@
             <td>{{ item.name }}</td>
             <td>
               <edit-item [item]="item" [bucketlistID]="bucketlist.id"></edit-item>
+              <button (click)="deleteItem(item.id)" class="btn btn-sm btn-default">
+                  <span class="glyphicon glyphicon-remove"></span>
+              </button>
             </td>
           </tr>
           <tr *ngIf="!this.bucketlist.items.length"><td>No items found!</td></tr>
