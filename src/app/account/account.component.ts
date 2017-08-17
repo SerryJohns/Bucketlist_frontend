@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -14,7 +14,6 @@ export class AccountComponent implements OnInit {
   displayRegister = false;
 
   ngOnInit() {
-    console.log(this.router.url);
     if (this.router.url === "/login") {
       this.displayLogin = true;
     } else if (this.router.url === "/register") {

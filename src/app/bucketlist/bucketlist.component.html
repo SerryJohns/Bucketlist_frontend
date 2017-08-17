@@ -1,28 +1,33 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand page-scroll" href="#">The Bucketlist</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#">New Bucketlist</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#">Profile</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#">Logout</a>
-                </li>
-            </ul>
+<div class="col-lg-7">
+    <div class="row col-lg-12" style="padding: 10px;">
+       <create-bucketlist></create-bucketlist>
+        <div class="col-lg-10">
+            <input type="text" [(ngModel)]="term" name="search" class="form-control" placeholder="Search for bucketlist...">
         </div>
     </div>
-</nav>
-
-<section class="container">
-  Some content 
-  kkjkj
-</section>
+    <div class="bucketlist-container col-lg-12">
+        <div *ngFor="let bucketlist of bucketlists | filter: term">
+            <div class="panel panel-info">
+                <div class="panel-heading" (click)="bucketlistClick(bucketlist)">
+                    <b>{{ bucketlist.name }}</b>
+                    </div>
+                <table class="table">
+                    <tr><td> {{ bucketlist.description }} </td></tr>
+                    <tr>
+                        <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
+                        <td>
+                            <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
+                            <create-item [bucketlist]="bucketlist"></create-item>
+                            <button (click)="deleteBucketlist(bucketlist.id)" class="btn btn-sm btn-default">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-5">
+    <app-item [bucketlist]="selectedBucketlist"></app-item>
+</div>
