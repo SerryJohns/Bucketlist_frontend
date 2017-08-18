@@ -7,13 +7,12 @@ import { BucketlistService } from './../services/bucketlist/bucketlist.service';
 import { toBucketlist } from "../services/bucketlist/bucketlist_utils";
 import { Router } from "@angular/router";
 import { DeleteBucketlistService } from "../services/bucketlist/delete-bucketlist.service";
-import { MdButton } from "@angular/material";
 
 @Component({
   selector: 'app-bucketlist',
   templateUrl: './bucketlist.component.html',
   styleUrls: ['./bucketlist.component.css'],
-  providers: [ DeleteBucketlistService, MdButton ]
+  providers: [ DeleteBucketlistService ]
 })
 export class BucketlistComponent implements OnInit {
 
@@ -21,8 +20,7 @@ export class BucketlistComponent implements OnInit {
     private authService: AuthService,
     private bucketlistService: BucketlistService,
     private deleteBucketlistService: DeleteBucketlistService,
-    private router: Router,
-    private btn: MdButton
+    private router: Router
     ) { }
 
   private bucketlists: Bucketlist[] = [];
