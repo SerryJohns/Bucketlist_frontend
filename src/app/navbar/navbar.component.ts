@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
      userObj: User;
 
     ngOnInit() {
-        console.log(currentUser);
         this.userObj = currentUser;
         this.currentUser = currentUser.firstname + " " + currentUser.surname;
      }

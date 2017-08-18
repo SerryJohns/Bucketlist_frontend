@@ -1,33 +1,53 @@
-<div class="col-lg-7">
-    <div class="row col-lg-12" style="padding: 10px;">
-       <create-bucketlist></create-bucketlist>
-        <div class="col-lg-10">
+<div class="container-fluid">
+    <div class="row" style="padding: 10px;">
+        <create-bucketlist></create-bucketlist>
+        <div>
             <input type="text" [(ngModel)]="term" name="search" class="form-control" placeholder="Search for bucketlist...">
         </div>
     </div>
-    <div class="bucketlist-container col-lg-12">
-        <div *ngFor="let bucketlist of bucketlists | filter: term">
-            <div class="panel panel-info">
-                <div class="panel-heading" (click)="bucketlistClick(bucketlist)">
-                    <b>{{ bucketlist.name }}</b>
-                    </div>
-                <table class="table">
-                    <tr><td> {{ bucketlist.description }} </td></tr>
-                    <tr>
-                        <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
-                        <td>
-                            <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
-                            <create-item [bucketlist]="bucketlist"></create-item>
-                            <button (click)="deleteBucketlist(bucketlist.id)" class="btn btn-sm btn-default">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </td>
-                        </tr>
-                </table>
-            </div>
+
+    <md-card class="bucketlist-card full-width" *ngFor="let bucketlist of bucketlists | filter: term">
+        <md-card-header>
+            <md-card-title (click)="bucketlistClick(bucketlist)">
+                <b>{{ bucketlist.name }}</b>
+            </md-card-title>
+            <md-card-subtitle>
+                Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }}
+            </md-card-subtitle>
+        </md-card-header>
+        <md-card-content>
+            <p>
+                {{ bucketlist.description }}
+            </p>
+        </md-card-content>
+        <md-card-actions>
+            <button md-button>Add Item</button>
+            <button md-button>Edit</button>
+            <button md-button (click)="deleteBucketlist(bucketlist.id)">Delete</button>
+        </md-card-actions>
+    </md-card>
+
+    <!--<div *ngFor="let bucketlist of bucketlists | filter: term">
+        <div class="panel panel-info">
+            <div class="panel-heading" (click)="bucketlistClick(bucketlist)">
+                <b>{{ bucketlist.name }}</b>
+                </div>
+            <table class="table">
+                <tr><td> {{ bucketlist.description }} </td></tr>
+                <tr>
+                    <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
+                    <td>
+                        <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
+                        <create-item [bucketlist]="bucketlist"></create-item>
+                        <button (click)="deleteBucketlist(bucketlist.id)" class="btn btn-sm btn-default">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                    </tr>
+            </table>
         </div>
+    </div>-->
+    <div class="col-lg-5">
+        <app-item [bucketlist]="selectedBucketlist"></app-item>
     </div>
-</div>
-<div class="col-lg-5">
-    <app-item [bucketlist]="selectedBucketlist"></app-item>
 </div>

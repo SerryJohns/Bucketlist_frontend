@@ -31,3 +31,8 @@ nav {
 .margin-20 {
     padding-right: 50px;
 }
+
+.bucketlist-card {
+    width: 400px;
+    margin-bottom: 10px;
+}

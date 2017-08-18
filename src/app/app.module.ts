@@ -37,7 +37,8 @@ import {
   MdDialogModule, 
   MdMenuModule, 
   MdButtonModule,
-  MdInputModule
+  MdInputModule,
+  MdCardModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -69,7 +70,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MdMenuModule,
     MdDialogModule,
     MdButtonModule,
-    MdInputModule
+    MdInputModule,
+    MdCardModule
       ],
   providers: [
     AuthService,
