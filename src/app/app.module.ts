@@ -32,9 +32,13 @@ import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
-import { MaterialModule } from '@angular/material';
-import { MdDialogModule } from '@angular/material';
-import { MdButtonModule } from '@angular/material';
+import {
+  MaterialModule,
+  MdDialogModule, 
+  MdMenuModule, 
+  MdButtonModule,
+  MdInputModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -60,8 +64,10 @@ import { MdButtonModule } from '@angular/material';
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MdMenuModule,
     MdDialogModule,
-    MdButtonModule
+    MdButtonModule,
+    MdInputModule
       ],
   providers: [
     AuthService,
