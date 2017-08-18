@@ -12,18 +12,8 @@ import { User } from "./account/user";
 
 export class AppComponent implements OnInit {
     constructor(private authService: AuthService) { }
-     @Output()
-     @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
-     title = 'The Bucketlist';
-     currentUser: any;
-     userObj: User;
 
     ngOnInit() {
-        this.userObj = currentUser;
-        this.currentUser = currentUser.firstname + " " + currentUser.surname;
+        
      }
-
-    someMethod() {
-        this.trigger.openMenu();
-    }
 }

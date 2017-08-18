@@ -39,6 +39,7 @@ import {
   MdButtonModule,
   MdInputModule
 } from '@angular/material';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {
     EditBucketlistComponent,
     CreateItemComponent,
     EditItemComponent,
-    BucketlistSearchComponent
+    BucketlistSearchComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
