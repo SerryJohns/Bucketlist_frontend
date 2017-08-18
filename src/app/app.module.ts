@@ -30,6 +30,11 @@ import { EditItemComponent } from './item/edit-item/edit-item.component';
 import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
+
+import { MaterialModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
+import { MdButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -53,7 +58,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     routing,
     ModalModule,
     Ng2SearchPipeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    MdDialogModule,
+    MdButtonModule
       ],
   providers: [
     AuthService,
