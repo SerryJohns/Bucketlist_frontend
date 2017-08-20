@@ -15,7 +15,9 @@ import { closeModal } from "../../services/modal";
 })
 export class CreateItemComponent implements OnInit {
 
-  constructor(private createItemService: CreateItemService) { }
+  constructor(
+    private createItemService: CreateItemService
+    ) { }
 
   private model: any = { };
   private errMsg: string;

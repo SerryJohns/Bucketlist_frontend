@@ -5,6 +5,10 @@
         </div>
     </div>
 
+    <div *ngIf="msg" class="alert alert-success full-width" role="alert">
+        {{ msg }}
+    </div>
+
     <md-card class="bucketlist-card full-width" *ngFor="let bucketlist of bucketlists | filter: term">
         <md-card-header>
             <md-card-title (click)="bucketlistClick(bucketlist)">
@@ -20,32 +24,12 @@
             </p>
         </md-card-content>
         <md-card-actions>
-            <button md-button>Add Item</button>
+            <button md-button (click)="addItems(bucketlist.id)">Add Item</button>
             <button md-button (click)="editBucketlist(bucketlist)">Edit</button>
             <button md-button (click)="deleteBucketlist(bucketlist.id)">Delete</button>
         </md-card-actions>
     </md-card>
 
-    <!--<div *ngFor="let bucketlist of bucketlists | filter: term">
-        <div class="panel panel-info">
-            <div class="panel-heading" (click)="bucketlistClick(bucketlist)">
-                <b>{{ bucketlist.name }}</b>
-                </div>
-            <table class="table">
-                <tr><td> {{ bucketlist.description }} </td></tr>
-                <tr>
-                    <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
-                    <td>
-                        <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
-                        <create-item [bucketlist]="bucketlist"></create-item>
-                        <button (click)="deleteBucketlist(bucketlist.id)" class="btn btn-sm btn-default">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </td>
-                    </tr>
-            </table>
-        </div>
-    </div>-->
     <div class="col-lg-5">
         <app-item [bucketlist]="selectedBucketlist"></app-item>
     </div>

@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { DeleteBucketlistService } from "../services/bucketlist/delete-bucketlist.service";
 import { MdDialog, MdDialogRef } from "@angular/material";
 import { CreateBucketlistComponent } from "./create-bucketlist/create-bucketlist.component";
+import { CreateItemComponent } from "../item/create-item/create-item.component";
 
 @Component({
   selector: 'app-bucketlist',
@@ -25,7 +26,6 @@ export class BucketlistComponent implements OnInit {
     private dialog: MdDialog
     ) { }
   
-  dialogRef: MdDialogRef<CreateBucketlistComponent>;
   private bucketlists: Bucketlist[] = [];
   private msg;
   selectedBucketlist: Bucketlist;
@@ -61,22 +61,32 @@ export class BucketlistComponent implements OnInit {
     this.selectedBucketlist = bucketlist;
   }
 
-  private editBucketlist(bucketlist: Bucketlist): void {
-    this.dialogRef = this.dialog.open(CreateBucketlistComponent, {
-            width: '600px',
-            data: bucketlist
+  private addItems(bucketlistID: number): void {
+    let dialogRef: MdDialogRef<CreateItemComponent>;
+    dialogRef = this.dialog.open(CreateItemComponent, {
+            width: '600px'
     });
-    this.dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
+    dialogRef.afterClosed().subscribe(result => {
+        this.msg = result;
     });
   }
 
-  private deleteBucketlist(id: any): void {
-    let response = this.deleteBucketlistService.deleteBucketlist(id.toString());
+  private editBucketlist(bucketlist: Bucketlist): void {
+    let dialogRef: MdDialogRef<CreateBucketlistComponent>;
+    dialogRef = this.dialog.open(CreateBucketlistComponent, {
+            width: '600px',
+            data: bucketlist
+    });
+    dialogRef.afterClosed().subscribe(result => {
+       this.msg = result.toString();
+    });
+  }
+
+  private deleteBucketlist(id: number): void {
+    let response = this.deleteBucketlistService.deleteBucketlist(id);
     response.subscribe(
       result => {
-        console.log(result);
-        this.getBucketLists();
+        this.msg = "Bucketlist deleted successfully.";
       },
       err => {
         console.log(err);

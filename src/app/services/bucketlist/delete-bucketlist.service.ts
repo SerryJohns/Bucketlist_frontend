@@ -17,7 +17,7 @@ export class DeleteBucketlistService {
 
   constructor(private http: Http) { }
 
-  deleteBucketlist(id: string) {
+  deleteBucketlist(id: number) {
     let url: string = baseUrl + '/bucketlists/' + id;
     this.headers.set("Authorization", TOKEN);
     let options = new RequestOptions({ headers: this.headers });
