@@ -64,7 +64,11 @@ export class BucketlistComponent implements OnInit {
   private addItems(bucketlistID: number): void {
     let dialogRef: MdDialogRef<CreateItemComponent>;
     dialogRef = this.dialog.open(CreateItemComponent, {
-            width: '600px'
+            width: '600px',
+            data: {
+              bucketlistID: bucketlistID,
+              item: null
+            }
     });
     dialogRef.afterClosed().subscribe(result => {
         this.msg = result;

@@ -71,7 +71,7 @@ export class CreateBucketlistComponent implements OnInit {
   }
 
   private cancelDialog() {
-    this.thisDialogRef.close("Canceled");
+    this.thisDialogRef.close();
   }
 
 }

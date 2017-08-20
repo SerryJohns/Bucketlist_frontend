@@ -11,6 +11,7 @@ import { DeleteItemService } from "../services/items/delete-item.service";
 export class ItemComponent implements OnInit {
 
   constructor(private deleteItemService: DeleteItemService) { }
+
   @Input() bucketlist: Bucketlist;
   noItems: boolean = true;
   private errMsg: string;

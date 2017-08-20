@@ -83,7 +83,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BucketlistService
     ],
     entryComponents: [
-      CreateBucketlistComponent
+      CreateBucketlistComponent,
+      CreateItemComponent
     ],
   bootstrap: [ AppComponent ]
 })
