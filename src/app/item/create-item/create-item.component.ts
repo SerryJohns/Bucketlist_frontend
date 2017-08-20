@@ -7,6 +7,7 @@ import { toItem } from "../item.utils";
 import { CreateItemService } from "../../services/items/create-item.service";
 import { closeModal } from "../../services/modal";
 import { MdDialogRef, MD_DIALOG_DATA } from "@angular/material";
+import { EditItemService } from "../../services/items/edit-item.service";
 
 @Component({
   selector: 'create-item',
@@ -18,6 +19,7 @@ export class CreateItemComponent implements OnInit {
 
   constructor(
     private createItemService: CreateItemService,
+    private editItemService: EditItemService,
     private dialogRef: MdDialogRef<CreateItemComponent>, @Inject(MD_DIALOG_DATA) private data: any
     ) { }
   
@@ -39,6 +41,23 @@ export class CreateItemComponent implements OnInit {
     response.subscribe(
       result => {
         this.dialogRef.close("Item created successfully!");
+      },
+      err => {
+        if (err.status === 400) {
+          this.errMsg = "Missing required parameters.";
+        } else {
+          this.errMsg = "Server Error!";
+        }
+      }
+    );
+  }
+
+  private editItem(): void {
+    this.item = toItem(this.model);
+    let response: any = this.editItemService.editItem(this.data.bucketlistID, this.item.id, this.item);
+    response.subscribe(
+      result => {
+        this.dialogRef.close("Item updated successfully!");
       },
       err => {
         if (err.status === 400) {
