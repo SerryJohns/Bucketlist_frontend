@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalModule } from 'ng2-Modal';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
 import { Bucketlist } from "../bucketlist";
 import { toBucketlist } from "../../services/bucketlist/bucketlist_utils";
 import { CreateBucketlistService } from "../../services/bucketlist/create-bucketlist.service";
 import { Router } from "@angular/router";
-import { closeModal } from "../../services/modal";
+import { MdDialogRef, MD_DIALOG_DATA } from "@angular/material";
 
 @Component({
   selector: 'create-bucketlist',
@@ -16,7 +15,8 @@ export class CreateBucketlistComponent implements OnInit {
 
   constructor(
     private createBucketlistService: CreateBucketlistService,
-    private router: Router
+    private router: Router,
+    public thisDialogRef: MdDialogRef<CreateBucketlistComponent>, @Inject(MD_DIALOG_DATA) public data: string
     ) { }
   
   private model: any = { };
@@ -27,24 +27,33 @@ export class CreateBucketlistComponent implements OnInit {
 
   
   ngOnInit() {
+    console.log(this.data)
   }
 
-  private submitBucketlist(): void {
-    this.bucketlist = toBucketlist(this.model);
-    let response: any = this.createBucketlistService.createBucketlist(this.model);
-    response.subscribe(
-      result => {
-        this.msg = result.message;
-        closeModal(this.closeBtn);
-      },
-      err => {
-        if (err.status === 400) {
-          this.errMsg = "Missing required parameters.";
-        } else {
-          this.errMsg = "Server Error!";
-        }
-      }
-    );
+  // private submitBucketlist(): void {
+  //   this.bucketlist = toBucketlist(this.model);
+  //   let response: any = this.createBucketlistService.createBucketlist(this.model);
+  //   response.subscribe(
+  //     result => {
+  //       this.msg = result.message;
+  //       closeModal(this.closeBtn);
+  //     },
+  //     err => {
+  //       if (err.status === 400) {
+  //         this.errMsg = "Missing required parameters.";
+  //       } else {
+  //         this.errMsg = "Server Error!";
+  //       }
+  //     }
+  //   );
+  // }
+
+  private closeDialog() {
+    this.thisDialogRef.close("Closed1!");
+  }
+
+  private cancelDialog() {
+    this.thisDialogRef.close("Cancled");
   }
 
 }

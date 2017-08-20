@@ -3,6 +3,8 @@ import { MdMenuTrigger } from "@angular/material";
 import { AuthService } from "../services/auth/auth.service";
 import { User } from "../account/user";
 import { currentUser } from "../account/currentUser";
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { CreateBucketlistComponent } from "../bucketlist/create-bucketlist/create-bucketlist.component";
 
 @Component({
   selector: 'navbar',
@@ -11,18 +13,30 @@ import { currentUser } from "../account/currentUser";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
-     @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
-     title = 'The Bucketlist';
-     currentUser: any;
-     userObj: User;
+    constructor(
+        private authService: AuthService,
+        private dialog: MdDialog
+        ) { }
+
+    @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
+    title = 'The Bucketlist';
+    currentUser: any;
+    userObj: User;
+    dialogRef: MdDialogRef<CreateBucketlistComponent>;
 
     ngOnInit() {
         this.userObj = currentUser;
         this.currentUser = currentUser.firstname + " " + currentUser.surname;
      }
 
-    someMethod() {
-        this.trigger.openMenu();
+    private createBucketlist(){
+        this.dialogRef = this.dialog.open(CreateBucketlistComponent, {
+            width: '600px',
+            data: {name: "Serry", age: "24"}
+        });
+        this.dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+        });
     }
+
 }

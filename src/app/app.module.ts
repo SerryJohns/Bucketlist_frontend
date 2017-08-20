@@ -34,11 +34,11 @@ import 'hammerjs';
 
 import {
   MaterialModule,
-  MdDialogModule, 
   MdMenuModule, 
   MdButtonModule,
   MdInputModule,
-  MdCardModule
+  MdCardModule,
+  MdDialogModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -68,10 +68,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     MaterialModule,
     MdMenuModule,
-    MdDialogModule,
     MdButtonModule,
     MdInputModule,
-    MdCardModule
+    MdCardModule,
+    MdDialogModule
       ],
   providers: [
     AuthService,
@@ -81,6 +81,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterService,
     GetUsersService,
     BucketlistService
+    ],
+    entryComponents: [
+      CreateBucketlistComponent
     ],
   bootstrap: [ AppComponent ]
 })
