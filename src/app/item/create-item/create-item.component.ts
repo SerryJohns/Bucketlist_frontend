@@ -13,7 +13,7 @@ import { EditItemService } from "../../services/items/edit-item.service";
   selector: 'create-item',
   templateUrl: './create-item.component.html',
   styleUrls: ['./create-item.component.css'],
-  providers: [CreateItemService]
+  providers: [ CreateItemService, EditItemService ]
 })
 export class CreateItemComponent implements OnInit {
 

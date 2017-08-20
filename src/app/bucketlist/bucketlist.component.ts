@@ -82,7 +82,7 @@ export class BucketlistComponent implements OnInit {
             data: bucketlist
     });
     dialogRef.afterClosed().subscribe(result => {
-       this.msg = result.toString();
+       this.msg = result;
     });
   }
 
