@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Bucketlist } from './bucketlist';
-import { ModalModule } from 'ng2-modal';
 
 import { AuthService } from './../services/auth/auth.service';
 import { BucketlistService } from './../services/bucketlist/bucketlist.service';
 import { toBucketlist } from "../services/bucketlist/bucketlist_utils";
 import { Router } from "@angular/router";
 import { DeleteBucketlistService } from "../services/bucketlist/delete-bucketlist.service";
+import { MdDialog, MdDialogRef } from "@angular/material";
+import { CreateBucketlistComponent } from "./create-bucketlist/create-bucketlist.component";
 
 @Component({
   selector: 'app-bucketlist',
@@ -20,9 +21,11 @@ export class BucketlistComponent implements OnInit {
     private authService: AuthService,
     private bucketlistService: BucketlistService,
     private deleteBucketlistService: DeleteBucketlistService,
-    private router: Router
+    private router: Router,
+    private dialog: MdDialog
     ) { }
-
+  
+  dialogRef: MdDialogRef<CreateBucketlistComponent>;
   private bucketlists: Bucketlist[] = [];
   private msg;
   selectedBucketlist: Bucketlist;
@@ -56,6 +59,16 @@ export class BucketlistComponent implements OnInit {
 
   private bucketlistClick(bucketlist: Bucketlist): void {
     this.selectedBucketlist = bucketlist;
+  }
+
+  private editBucketlist(bucketlist: Bucketlist): void {
+    this.dialogRef = this.dialog.open(CreateBucketlistComponent, {
+            width: '600px',
+            data: bucketlist
+    });
+    this.dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+    });
   }
 
   private deleteBucketlist(id: any): void {

@@ -21,7 +21,7 @@
         </md-card-content>
         <md-card-actions>
             <button md-button>Add Item</button>
-            <button md-button>Edit</button>
+            <button md-button (click)="editBucketlist(bucketlist)">Edit</button>
             <button md-button (click)="deleteBucketlist(bucketlist.id)">Delete</button>
         </md-card-actions>
     </md-card>
