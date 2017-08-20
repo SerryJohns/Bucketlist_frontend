@@ -27,29 +27,23 @@ export class CreateBucketlistComponent implements OnInit {
 
   
   ngOnInit() {
-    console.log(this.data)
   }
 
-  // private submitBucketlist(): void {
-  //   this.bucketlist = toBucketlist(this.model);
-  //   let response: any = this.createBucketlistService.createBucketlist(this.model);
-  //   response.subscribe(
-  //     result => {
-  //       this.msg = result.message;
-  //       closeModal(this.closeBtn);
-  //     },
-  //     err => {
-  //       if (err.status === 400) {
-  //         this.errMsg = "Missing required parameters.";
-  //       } else {
-  //         this.errMsg = "Server Error!";
-  //       }
-  //     }
-  //   );
-  // }
-
-  private closeDialog() {
-    this.thisDialogRef.close("Closed1!");
+  private submitBucketlist(): void {
+    this.bucketlist = toBucketlist(this.model);
+    let response: any = this.createBucketlistService.createBucketlist(this.model);
+    response.subscribe(
+      result => {
+        this.thisDialogRef.close("Bucketlist created successfully!");
+      },
+      err => {
+        if (err.status === 400) {
+          this.errMsg = "Missing required parameters.";
+        } else {
+          this.errMsg = "Server Error!";
+        }
+      }
+    );
   }
 
   private cancelDialog() {

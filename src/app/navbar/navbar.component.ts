@@ -31,8 +31,7 @@ export class NavbarComponent implements OnInit {
 
     private createBucketlist(){
         this.dialogRef = this.dialog.open(CreateBucketlistComponent, {
-            width: '600px',
-            data: {name: "Serry", age: "24"}
+            width: '600px'
         });
         this.dialogRef.afterClosed().subscribe(result => {
             console.log(result);
