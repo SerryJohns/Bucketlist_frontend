@@ -3,7 +3,11 @@
         <div style="padding: 10px;">
             <md-input-container class="full-width">
                 <input mdInput type="text" [(ngModel)]="term" name="search" placeholder="Search for bucketlist...">
+                <button class="pull-right" md-icon-button style="margin-top: -35px;">
+                    <md-icon>search</md-icon>
+                </button>
             </md-input-container>
+            
         </div>
 
         <div *ngIf="msg" class="alert alert-success full-width" role="alert">
