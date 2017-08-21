@@ -36,7 +36,7 @@ export class CreateBucketlistComponent implements OnInit {
   }
 
   private submitBucketlist(): void {
-    this.model.interests = this.otherInterests ? this.otherInterests :  this.model.interests;
+    this.model.interests = this.model.interests === 'other' ? this.otherInterests :  this.model.interests;
     this.bucketlist = toBucketlist(this.model);
     let response: any = this.createBucketlistService.createBucketlist(this.bucketlist);
     response.subscribe(

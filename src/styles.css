@@ -41,11 +41,11 @@ nav {
 }
 
 .full-width {
-  width: 100%;
+    width: 100%;
 }
 
 .custom-blue {
-    background-color: #287cce;
+    background-color: #2862b8;
 }
 
 .active-btn {
@@ -58,4 +58,8 @@ nav {
     background-color: transparent;
     border: none;
     padding: 5px 20px 10px;
+}
+
+.hand-cursor {
+    cursor: pointer; cursor: hand;
 }
