@@ -2,62 +2,68 @@
     <div class="col-md-7">
         <div style="padding: 10px;">
             <md-input-container class="full-width">
-                <input mdInput type="text" [(ngModel)]="term" name="search" placeholder="Search for bucketlist...">
-                <button class="pull-right" md-icon-button style="margin-top: -35px;">
+                <input mdInput type="text" [(ngModel)]="param" name="search" placeholder="Search for bucketlist...">
+                <button class="pull-right" md-icon-button style="margin-top: -35px;" (click)="searchBucketlist()">
                     <md-icon>search</md-icon>
                 </button>
-            </md-input-container>
-            
+            </md-input-container>    
         </div>
 
         <div *ngIf="msg" class="alert alert-success full-width" role="alert">
             {{ msg }}
         </div>
 
-        <div class="card card-nav-tabs" *ngFor="let bucketlist of bucketlists | filter: term">
-            <div class="card-header" data-background-color="custom-blue">
-                <div class="nav-tabs-wrapper">
-                    <span class="nav nav-tabs hand-cursor" (click)="bucketlistClick(bucketlist)">
-                        {{ bucketlist.name }}
-                    </span>
-                     <button class="pull-right" md-icon-button [mdMenuTriggerFor]="menu" style="margin-top: -30px;">
-                        <md-icon>more_vert</md-icon>
-                    </button>
-                    <md-menu #menu="mdMenu">
-                        <button md-menu-item (click)="bucketlistClick(bucketlist)">
-                            <md-icon>playlist_add_check</md-icon>
-                            <span>Items</span>
+        <div class="bucketlist-container">
+            <div class="card card-nav-tabs" *ngFor="let bucketlist of bucketlists | filter: param">
+                <div class="card-header" data-background-color="custom-blue">
+                    <div class="nav-tabs-wrapper">
+                        <span class="nav nav-tabs hand-cursor" (click)="bucketlistClick(bucketlist)">
+                            {{ bucketlist.name }}
+                        </span>
+                        <button class="pull-right" md-icon-button [mdMenuTriggerFor]="menu" style="margin-top: -30px;">
+                            <md-icon>more_vert</md-icon>
                         </button>
-                        <button md-menu-item (click)="addItems(bucketlist.id)">
-                            <md-icon>add</md-icon>
-                            <span>Add Item</span>
-                        </button>
-                        <button md-menu-item (click)="editBucketlist(bucketlist)">
-                            <md-icon>mode_edit</md-icon>
-                            <span>Edit</span>
-                        </button>
-                        <button md-menu-item (click)="deleteBucketlist(bucketlist.id)">
-                            <md-icon>close</md-icon>
-                            <span>Delete</span>
-                        </button>
-                        
-                    </md-menu>
+                        <md-menu #menu="mdMenu">
+                            <button md-menu-item (click)="bucketlistClick(bucketlist)">
+                                <md-icon>playlist_add_check</md-icon>
+                                <span>Items</span>
+                            </button>
+                            <button md-menu-item (click)="addItems(bucketlist.id)">
+                                <md-icon>add</md-icon>
+                                <span>Add Item</span>
+                            </button>
+                            <button md-menu-item (click)="editBucketlist(bucketlist)">
+                                <md-icon>mode_edit</md-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button md-menu-item (click)="deleteBucketlist(bucketlist.id)">
+                                <md-icon>close</md-icon>
+                                <span>Delete</span>
+                            </button>
+                            
+                        </md-menu>
+                    </div>
                 </div>
-            </div>
-            <div class="card-content">
-                <div class="tab-content">
-                    {{ bucketlist.description }}
-                </div>    
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> 
-                    Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }}
+                <div class="card-content">
+                    <div class="tab-content">
+                        {{ bucketlist.description }}
+                    </div>    
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">access_time</i> 
+                        Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }}
+                    </div>
                 </div>
             </div>
         </div>
-
+        <md-paginator [length]="length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="paginateBucketlists($event)">
+        </md-paginator>
     </div>
+
     <div class="col-lg-5">
         <app-item [items]="bucketlistItems" [bucketlist]="selectedBucketlist"></app-item>
     </div>
