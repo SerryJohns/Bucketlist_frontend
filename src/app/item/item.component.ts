@@ -4,22 +4,25 @@ import { DeleteItemService } from "../services/items/delete-item.service";
 import { MdDialog, MdDialogRef } from "@angular/material";
 import { CreateItemComponent } from "./create-item/create-item.component";
 import { Item } from "./item";
+import { EditItemService } from "../services/items/edit-item.service";
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css'],
-  providers: [ DeleteItemService ]
+  providers: [ DeleteItemService, EditItemService ]
 })
 export class ItemComponent implements OnInit {
 
   constructor(
     private deleteItemService: DeleteItemService,
+    private editItemService: EditItemService,
     private dialog: MdDialog
     ) { }
 
   @Input() bucketlist: Bucketlist;
   @Input() items: any[];
+  private checked: boolean;
   noItems: boolean = true;
   private errMsg: string;
   private position: string = "above";
@@ -29,6 +32,20 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     this.activate();
+  }
+
+  private completeItem(item: Item) {
+    item.status = "complete";
+    item.date_accomplished = new Date();
+    let response = this.editItemService.editItem(this.bucketlist.id, item.id, item);
+    response.subscribe(
+      result => {
+        console.log("Item Completed successfully!");
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   private editItem(item: Item): void {

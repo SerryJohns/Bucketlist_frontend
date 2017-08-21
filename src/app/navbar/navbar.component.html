@@ -37,5 +37,9 @@
             <md-icon>public</md-icon>
             <span>{{ userObj.username }}</span>
         </span>
+        <button md-menu-item (click)="authService.logout()">
+            <md-icon>reply</md-icon>
+            <span>Log out</span>
+        </button>
     </md-menu>    
 </nav>

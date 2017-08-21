@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
         private dialog: MdDialog
         ) { }
 
-    @ViewChild(MdMenuTrigger) trigger: MdMenuTrigger;
     title = 'The Bucketlist';
     currentUser: any;
     userObj: User;

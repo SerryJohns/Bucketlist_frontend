@@ -34,14 +34,18 @@
                       <tbody>
                         <tr *ngFor="let item of items">
                           <td>
-                              <md-checkbox
-                                  [checked]="checked"
-                                  [indeterminate]="indeterminate"
-                                  [align]="align"
-                                  mdTooltip="Complete" [mdTooltipPosition]="position">
+                              <md-checkbox *ngIf="item.status != 'complete'"
+                                value="item.id"
+                                [align]="align"
+                                mdTooltip="Complete" [mdTooltipPosition]="position"
+                                (click)="completeItem(item)">
                               </md-checkbox>
                           </td>
-                          <td><strong> {{ item.name }}: </strong>{{ item.description }}</td>
+                          <td><strong> {{ item.name }}: </strong>{{ item.description }}
+                          <div *ngIf="item.status === 'complete'">
+                            <small> Date Completed: {{ item.date_accomplished | date: 'dd-MM-yyyy' }} </small>
+                          </div>
+                          </td>
                           <td class="td-actions text-right">
                               <button (click)="editItem(item)" md-mini-fab class="btn btn-primary btn-simple btn-xs" mdTooltip="Edit Item" [mdTooltipPosition]="position">
                                   <i class="material-icons">edit</i>

@@ -26,8 +26,7 @@ export class CreateBucketlistComponent implements OnInit {
   private errMsg: string;
   private msg: string;
   private bucketlist: Bucketlist;
-  @ViewChild('closeBtn') closeBtn: ElementRef;
-
+  private otherInterests: string;
   
   ngOnInit() {
     if (this.data){
@@ -37,8 +36,9 @@ export class CreateBucketlistComponent implements OnInit {
   }
 
   private submitBucketlist(): void {
+    this.model.interests = this.otherInterests ? this.otherInterests :  this.model.interests;
     this.bucketlist = toBucketlist(this.model);
-    let response: any = this.createBucketlistService.createBucketlist(this.model);
+    let response: any = this.createBucketlistService.createBucketlist(this.bucketlist);
     response.subscribe(
       result => {
         this.thisDialogRef.close("Bucketlist created successfully!");

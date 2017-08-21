@@ -3,14 +3,15 @@
   <md-dialog-content>
     <form id="item-form" method="post" (ngSubmit)="createItem.form.valid && submitItem()" #createItem="ngForm" role="form" novalidate>
       <md-input-container class="full-width">
-        <input mdInput [(ngModel)]="model.name" name="name" placeholder="Item name">
+        <input mdInput [(ngModel)]="model.name" name="itemName" placeholder="Item name">
       </md-input-container>
       <md-input-container class="full-width">
         <textarea mdInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
       </md-input-container>
-      <md-input-container class="full-width">
-        <input mdInput [(ngModel)]="model.status" name="status" placeholder="Item Status">
-      </md-input-container>
+      <md-select class="full-width" placeholder="Item Status" [(ngModel)]="model.status" name="status">
+        <md-option [value]="'pending'">Pending</md-option>
+        <md-option [value]="'complete'">Complete</md-option>
+      </md-select>
       <div *ngIf="errMsg" class="alert alert-warning" role="alert">
         {{ errMsg }}
       </div>

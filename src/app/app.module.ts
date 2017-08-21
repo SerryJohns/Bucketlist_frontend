@@ -37,7 +37,8 @@ import {
   MdCardModule,
   MdDialogModule,
   MdCheckboxModule,
-  MdTooltipModule
+  MdTooltipModule,
+  MdSelectModule
 } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -70,7 +71,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MdCardModule,
     MdDialogModule,
     MdCheckboxModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdSelectModule
       ],
   providers: [
     AuthService,
