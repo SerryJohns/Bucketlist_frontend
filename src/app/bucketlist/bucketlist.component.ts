@@ -29,6 +29,7 @@ export class BucketlistComponent implements OnInit {
   private bucketlists: Bucketlist[] = [];
   private msg;
   selectedBucketlist: Bucketlist;
+  bucketlistItems: any[];
   noItems = true;
 
   ngOnInit() {
@@ -58,6 +59,7 @@ export class BucketlistComponent implements OnInit {
   }
 
   private bucketlistClick(bucketlist: Bucketlist): void {
+    this.bucketlistItems = bucketlist.items ? bucketlist.items: null;
     this.selectedBucketlist = bucketlist;
   }
 

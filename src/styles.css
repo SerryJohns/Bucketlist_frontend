@@ -43,3 +43,19 @@ nav {
 .full-width {
   width: 100%;
 }
+
+.custom-blue {
+    background-color: #287cce;
+}
+
+.active-btn {
+    background-color: #427ec5;
+    border: none;
+    padding: 5px 20px 10px;
+}
+
+.inactive-btn {
+    background-color: transparent;
+    border: none;
+    padding: 5px 20px 10px;
+}
