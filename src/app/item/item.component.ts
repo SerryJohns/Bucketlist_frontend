@@ -59,7 +59,10 @@ export class ItemComponent implements OnInit {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-
+      console.log(result);
+      if (!result) {
+        this.items = this.bucketlist.items;
+      }
     });
     
   }
