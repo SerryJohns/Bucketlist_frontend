@@ -41,7 +41,7 @@ export class CreateBucketlistComponent implements OnInit {
     let response: any = this.createBucketlistService.createBucketlist(this.bucketlist);
     response.subscribe(
       result => {
-        this.thisDialogRef.close("Bucketlist created successfully!");
+        this.thisDialogRef.close(result.json().data);
       },
       err => {
         if (err.status === 400) {

@@ -48,6 +48,17 @@ export class BucketlistComponent implements OnInit {
     this.getBucketLists();
   }
 
+  private createBucketlist(){
+      let dialogRef: MdDialogRef<CreateBucketlistComponent>;
+      dialogRef = this.dialog.open(CreateBucketlistComponent, {
+          width: '600px'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+          if (result)
+            this.bucketlists.splice(0, 0, toBucketlist(result));
+      });
+    }
+
   private paginateBucketlists(pageEvent: PageEvent): void {
     this.pageSize = pageEvent.pageSize;
     if ((pageEvent.pageIndex > this.page) && this.next) {
@@ -115,6 +126,9 @@ export class BucketlistComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
        this.msg = result;
+       if (!result) {
+         this.getBucketLists();
+       }
     });
   }
 
@@ -123,6 +137,7 @@ export class BucketlistComponent implements OnInit {
     response.subscribe(
       result => {
         this.msg = "Bucketlist deleted successfully.";
+        this.getBucketLists();
       },
       err => {
         console.log(err);

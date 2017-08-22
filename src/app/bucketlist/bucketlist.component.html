@@ -1,12 +1,28 @@
 <div class="container-fluid col-md-12">
     <div class="col-md-7">
         <div style="padding: 10px;">
-            <md-input-container class="full-width">
-                <input mdInput type="text" [(ngModel)]="param" name="search" placeholder="Search for bucketlist...">
-                <button class="pull-right" md-icon-button style="margin-top: -35px;" (click)="searchBucketlist()">
-                    <md-icon>search</md-icon>
-                </button>
-            </md-input-container>    
+            <div class="row">
+                <div class="col-md-1">
+                    <button 
+                        md-fab
+                        name="createBucketlist" 
+                        (click)="createBucketlist()" 
+                        style="background-color: #2862b8;"
+                        mdTooltip="Create Bucketlist" 
+                        [mdTooltipPosition]="'above'"
+                        >
+                        <md-icon>add</md-icon>
+                    </button>
+                </div>
+                <div class="col-md-11">
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" [(ngModel)]="param" name="search" placeholder="Search for bucketlist...">
+                        <button class="pull-right" md-icon-button style="margin-top: -35px;" (click)="searchBucketlist()">
+                            <md-icon>search</md-icon>
+                        </button>
+                    </md-input-container>
+                </div>  
+            </div>
         </div>
 
         <div *ngIf="msg" class="alert alert-success full-width" role="alert">
