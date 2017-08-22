@@ -41,7 +41,7 @@ export class BucketlistComponent implements OnInit {
   private pageEvent: PageEvent;
   private next: string;
   private prev: string;
-  private page: string;
+  private page: number;
   private pages: string;
 
   ngOnInit() {
@@ -49,20 +49,24 @@ export class BucketlistComponent implements OnInit {
   }
 
   private paginateBucketlists(pageEvent: PageEvent): void {
-    console.log(pageEvent);
+    this.pageSize = pageEvent.pageSize;
+    if ((pageEvent.pageIndex > this.page) && this.next) {
+      this.searchBucketlist(this.next);
+    } else if (this.prev) {
+      this.searchBucketlist(this.prev);
+    }
   }
 
-  private searchBucketlist(): void {
+  private searchBucketlist(next?: string): void {
     this.bucketlists = [];
-    let response = this.searchBucketlistService.searchBucketlists(this.param, this.pageSize, 0);
+    let response = this.searchBucketlistService.searchBucketlists(this.param, this.pageSize, 0, next);
     response.subscribe(
       result => {
-        console.log(result);
         if (result.pagination) {
           this.length = result.pagination.num_results;
           this.next = result.pagination.next;
           this.prev = result.pagination.prev;
-          this.page = result.pagination.page;
+          this.page = result.pagination.page - 1;
           this.pages = result.pagination.total_pages;
           result.data.forEach(bucketlist => {
             this.bucketlists.push(toBucketlist(bucketlist));

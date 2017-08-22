@@ -16,15 +16,22 @@ export class SearchBucketlistService {
   private headers = HEADERS;
   constructor(private http: Http) { }
 
-  searchBucketlists(param: string, limit: number, offset: number) {
-    let params = new URLSearchParams();
-    params.set('q', param);
-    params.set('limit', limit.toString());
-    params.set('offset', offset.toString());
-
+  searchBucketlists(param: string, limit: number, offset: number, pagination_url?: string) {
+    let options: RequestOptions;
     let url: string = baseUrl + '/bucketlists/';
     this.headers.set("Authorization", TOKEN)
-    let options = new RequestOptions({ headers: this.headers, search: params });
+
+    if (!pagination_url) {
+      let params = new URLSearchParams();
+      params.set('q', param);
+      params.set('limit', limit.toString());
+      params.set('offset', offset.toString());
+      options = new RequestOptions({ headers: this.headers, search: params });
+    } else {
+      url = pagination_url;
+      options = new RequestOptions({ headers: this.headers});
+    }
+    
     return this.http.get(url, options)
       .map(response => response.json())
       .catch(handleError);
