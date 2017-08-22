@@ -22,13 +22,12 @@ export class SearchBucketlistService {
     params.set('limit', limit.toString());
     params.set('offset', offset.toString());
 
-    let url: string = baseUrl + '/bucketlists';
+    let url: string = baseUrl + '/bucketlists/';
     this.headers.set("Authorization", TOKEN)
     let options = new RequestOptions({ headers: this.headers, search: params });
     return this.http.get(url, options)
       .map(response => {
         response.json();
-        console.log(response);
       })
       .catch(handleError);
   }
