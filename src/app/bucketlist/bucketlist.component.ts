@@ -104,17 +104,20 @@ export class BucketlistComponent implements OnInit {
     this.selectedBucketlist = bucketlist;
   }
 
-  private addItems(bucketlistID: number): void {
+  private addItems(bucketlist: Bucketlist): void {
     let dialogRef: MdDialogRef<CreateItemComponent>;
     dialogRef = this.dialog.open(CreateItemComponent, {
             width: '600px',
             data: {
-              bucketlistID: bucketlistID,
+              bucketlistID: bucketlist.id,
               item: null
             }
     });
     dialogRef.afterClosed().subscribe(result => {
-        this.msg = result;
+      if (result) {
+        this.msg = result.message;
+        bucketlist.items.push(result.data);
+      }
     });
   }
 

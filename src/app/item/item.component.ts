@@ -64,11 +64,11 @@ export class ItemComponent implements OnInit {
     
   }
 
-  private deleteItem(itemID: number): void {
-    let response: any = this.deleteItemService.deleteItem(this.bucketlist.id, itemID);
+  private deleteItem(item: Item): void {
+    let response: any = this.deleteItemService.deleteItem(this.bucketlist.id, item.id);
     response.subscribe(
       response => {
-        console.log(response);
+       this.items.splice(this.items.indexOf(item), 1);
       },
       err => {
         this.errMsg = "Server Error!";
