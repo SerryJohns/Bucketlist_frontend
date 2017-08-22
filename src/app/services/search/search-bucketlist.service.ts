@@ -26,9 +26,7 @@ export class SearchBucketlistService {
     this.headers.set("Authorization", TOKEN)
     let options = new RequestOptions({ headers: this.headers, search: params });
     return this.http.get(url, options)
-      .map(response => {
-        response.json();
-      })
+      .map(response => response.json())
       .catch(handleError);
   }
 }
