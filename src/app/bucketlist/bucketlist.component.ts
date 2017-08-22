@@ -36,7 +36,7 @@ export class BucketlistComponent implements OnInit {
   noItems = true;
 
   private length = 5;
-  private pageSize = 5;
+  private pageSize = 3;
   private pageSizeOptions = [2, 5, 10, 25, 100];
   private pageEvent: PageEvent;
   private next: string;
@@ -72,7 +72,8 @@ export class BucketlistComponent implements OnInit {
             this.bucketlists.push(toBucketlist(bucketlist));
           });
         }
-        this.msg = result.message;
+        if (result.message != "Bucketlist(s) retrieved successfully.")
+          this.msg = result.message;
       },
       err => {
         console.log(err);
@@ -82,25 +83,7 @@ export class BucketlistComponent implements OnInit {
   }
 
   private getBucketLists(): void {
-    this.bucketlistService.getBucketlist()
-    .subscribe(
-      result => {
-        let bucketlists = result.data;
-        let pagination = result.pagination;
-        
-        if (!bucketlists) {
-          this.msg = "No Bucketlists created!";
-        }
-
-        bucketlists.forEach(bucketlist => {
-          let bucketlistObj = toBucketlist(bucketlist);
-          this.bucketlists.push(toBucketlist(bucketlist));
-        });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.searchBucketlist();
   }
 
   private bucketlistClick(bucketlist: Bucketlist): void {
