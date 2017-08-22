@@ -54,6 +54,8 @@ export class BucketlistComponent implements OnInit {
       this.searchBucketlist(this.next);
     } else if (this.prev) {
       this.searchBucketlist(this.prev);
+    } else {
+      this.searchBucketlist();
     }
   }
 
