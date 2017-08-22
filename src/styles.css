@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,700,500);
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/css/material-dashboard.css";
+@import "./assets/css/demo.css";
+
+body {
+    margin: 0;
+}
+
+nav {
+    background-color: #283593;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    margin-top: 0;
+}
+
+.main-content {
+  margin-top: 30px;
+  padding: 30px 15px;
+  min-height: calc(100% - 123px);
+}
+
+.pull-right {
+    float:right;
+}
+
+.margin-20 {
+    padding-right: 50px;
+}
+
+.bucketlist-card {
+    width: 400px;
+    margin-bottom: 10px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.custom-blue {
+    background-color: #2862b8;
+}
+
+.active-btn {
+    background-color: #427ec5;
+    border: none;
+    padding: 5px 20px 10px;
+}
+
+.inactive-btn {
+    background-color: transparent;
+    border: none;
+    padding: 5px 20px 10px;
+}
+
+.hand-cursor {
+    cursor: pointer; cursor: hand;
+}
+
+.pull-low {
+    margin-top: 50px;
+}
