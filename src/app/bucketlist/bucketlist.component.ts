@@ -35,7 +35,7 @@ export class BucketlistComponent implements OnInit {
   bucketlistItems: any[];
   noItems = true;
 
-  private length = 5;
+  private length = 3;
   private pageSize = 3;
   private pageSizeOptions = [2, 5, 10, 25, 100];
   private pageEvent: PageEvent;
