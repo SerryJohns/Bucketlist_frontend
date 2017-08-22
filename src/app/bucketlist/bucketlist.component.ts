@@ -48,12 +48,25 @@ export class BucketlistComponent implements OnInit {
     this.getBucketLists();
   }
 
+  private createBucketlist(){
+      let dialogRef: MdDialogRef<CreateBucketlistComponent>;
+      dialogRef = this.dialog.open(CreateBucketlistComponent, {
+          width: '600px'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+          if (result)
+            this.bucketlists.splice(0, 0, toBucketlist(result));
+      });
+    }
+
   private paginateBucketlists(pageEvent: PageEvent): void {
     this.pageSize = pageEvent.pageSize;
     if ((pageEvent.pageIndex > this.page) && this.next) {
       this.searchBucketlist(this.next);
     } else if (this.prev) {
       this.searchBucketlist(this.prev);
+    } else {
+      this.searchBucketlist();
     }
   }
 
@@ -91,17 +104,20 @@ export class BucketlistComponent implements OnInit {
     this.selectedBucketlist = bucketlist;
   }
 
-  private addItems(bucketlistID: number): void {
+  private addItems(bucketlist: Bucketlist): void {
     let dialogRef: MdDialogRef<CreateItemComponent>;
     dialogRef = this.dialog.open(CreateItemComponent, {
             width: '600px',
             data: {
-              bucketlistID: bucketlistID,
+              bucketlistID: bucketlist.id,
               item: null
             }
     });
     dialogRef.afterClosed().subscribe(result => {
-        this.msg = result;
+      if (result) {
+        this.msg = result.message;
+        bucketlist.items.push(result.data);
+      }
     });
   }
 
@@ -113,6 +129,9 @@ export class BucketlistComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
        this.msg = result;
+       if (!result) {
+         this.getBucketLists();
+       }
     });
   }
 
@@ -121,6 +140,7 @@ export class BucketlistComponent implements OnInit {
     response.subscribe(
       result => {
         this.msg = "Bucketlist deleted successfully.";
+        this.getBucketLists();
       },
       err => {
         console.log(err);
