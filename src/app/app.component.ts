@@ -1,6 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { currentUser } from './account/currentUser';
+import { MdMenuTrigger } from "@angular/material";
+import { User } from "./account/user";
 
 @Component({
     selector: 'app-root',
@@ -10,11 +12,8 @@ import { currentUser } from './account/currentUser';
 
 export class AppComponent implements OnInit {
     constructor(private authService: AuthService) { }
-     title = 'The Bucketlist';
-     @Output()
-     currentUser: any;
 
     ngOnInit() {
-        this.currentUser = currentUser.firstname + " " + currentUser.surname;
+        
      }
 }

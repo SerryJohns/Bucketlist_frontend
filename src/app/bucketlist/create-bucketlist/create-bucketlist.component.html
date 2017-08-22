@@ -1,26 +1,32 @@
-<div class="col-lg-2">
-    <button class="btn btn-sm btn-primary" (click)="myModal.open()">New</button>
+<div>
+  <h2 md-dialog-title> {{ title }} </h2>
+  <md-dialog-content>
+    <form id="bucketlist-form" method="post" (ngSubmit)="createBucketlist.form.valid && submitBucketlist()" #createBucketlist="ngForm" role="form" novalidate>
+      <md-input-container class="full-width">
+        <input mdInput [(ngModel)]="model.name" name="name" placeholder="Bucketlist name">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <textarea mdInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
+      </md-input-container>
+      <md-select class="full-width" placeholder="Interests" [(ngModel)]="model.interests" name="interests">
+        <md-option [value]="'travel'">Travel</md-option>
+        <md-option [value]="'education'">Education</md-option>
+        <md-option [value]="'adventure'">Adventure</md-option>
+        <md-option [value]="'business'">Business</md-option>
+        <md-option [value]="'politics'">Politics</md-option>
+        <md-option [value]="'other'">Other</md-option>
+      </md-select>
+      <md-input-container class="full-width" *ngIf="model.interests === 'other'">
+        <input mdInput [(ngModel)]="otherInterests" name="otherInterests" placeholder="Other Interests">
+      </md-input-container>
+      <div *ngIf="errMsg" class="alert alert-warning" role="alert">
+        {{ errMsg }}
+      </div>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <button md-button (click)="editBucketlist()" *ngIf="data">Update</button>
+    <button md-button (click)="submitBucketlist()" *ngIf="!data">Submit</button>
+    <button md-button (click)="cancelDialog()">Cancel</button>
+  </md-dialog-actions>
 </div>
-<form id="bucketlist-form" method="post" (ngSubmit)="createBucketlist.form.valid && submitBucketlist()" #createBucketlist="ngForm" role="form" novalidate>
-  <modal #myModal>
-    <modal-header>
-      Create new Bucketlist
-    </modal-header>
-    <modal-content>
-      <div class="form-group">
-          <input type="text" [(ngModel)]="model.name" name="name" class="form-control" placeholder="Bucketlist name" value=""/>
-      </div>
-      <div class="form-group">
-          <textarea [(ngModel)]="model.description" name="description" class="form-control" placeholder="Description" value=""></textarea>
-      </div>
-      <div class="form-group">
-          <input type="text" [(ngModel)]="model.interests" name="interests" class="form-control" placeholder="Interests" value="">
-      </div>
-      <div class="alert alert-danger" role="alert" *ngIf="errMsg">{{ errMsg }}</div>
-    </modal-content>
-    <modal-footer>
-      <input type="submit" name="bucketlist-submit" class="btn btn-success" value="Submit">
-      <button class="btn btn-primary" (click)="myModal.close()" #closeBtn>close</button>
-    </modal-footer>
-  </modal>
-</form>
