@@ -1,33 +1,86 @@
-<div class="col-lg-7">
-    <div class="row col-lg-12" style="padding: 10px;">
-       <create-bucketlist></create-bucketlist>
-        <div class="col-lg-10">
-            <input type="text" [(ngModel)]="term" name="search" class="form-control" placeholder="Search for bucketlist...">
-        </div>
-    </div>
-    <div class="bucketlist-container col-lg-12">
-        <div *ngFor="let bucketlist of bucketlists | filter: term">
-            <div class="panel panel-info">
-                <div class="panel-heading" (click)="bucketlistClick(bucketlist)">
-                    <b>{{ bucketlist.name }}</b>
-                    </div>
-                <table class="table">
-                    <tr><td> {{ bucketlist.description }} </td></tr>
-                    <tr>
-                        <td> Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }} </td>
-                        <td>
-                            <edit-bucketlist [bucketlist]="bucketlist"></edit-bucketlist>
-                            <create-item [bucketlist]="bucketlist"></create-item>
-                            <button (click)="deleteBucketlist(bucketlist.id)" class="btn btn-sm btn-default">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </td>
-                        </tr>
-                </table>
+<div class="container-fluid col-md-12">
+    <div class="col-md-7">
+        <div style="padding: 10px;">
+            <div class="row">
+                <div class="col-md-1">
+                    <button 
+                        md-fab
+                        name="createBucketlist" 
+                        (click)="createBucketlist()" 
+                        style="background-color: #2862b8;"
+                        mdTooltip="Create Bucketlist" 
+                        [mdTooltipPosition]="'above'"
+                        >
+                        <md-icon>add</md-icon>
+                    </button>
+                </div>
+                <div class="col-md-11">
+                    <md-input-container class="full-width">
+                        <input mdInput type="text" [(ngModel)]="param" name="search" placeholder="Search for bucketlist...">
+                        <button class="pull-right" md-icon-button style="margin-top: -35px;" (click)="searchBucketlist()">
+                            <md-icon>search</md-icon>
+                        </button>
+                    </md-input-container>
+                </div>  
             </div>
         </div>
+
+        <div *ngIf="msg" class="alert alert-success full-width" role="alert">
+            {{ msg }}
+        </div>
+
+        <div class="bucketlist-container">
+            <div class="card card-nav-tabs" *ngFor="let bucketlist of bucketlists | filter: param">
+                <div class="card-header" data-background-color="custom-blue">
+                    <div class="nav-tabs-wrapper">
+                        <span class="nav nav-tabs hand-cursor" (click)="bucketlistClick(bucketlist)">
+                            {{ bucketlist.name }}
+                        </span>
+                        <button class="pull-right" md-icon-button [mdMenuTriggerFor]="menu" style="margin-top: -30px;">
+                            <md-icon>more_vert</md-icon>
+                        </button>
+                        <md-menu #menu="mdMenu">
+                            <button md-menu-item (click)="bucketlistClick(bucketlist)">
+                                <md-icon>playlist_add_check</md-icon>
+                                <span>Items</span>
+                            </button>
+                            <button md-menu-item (click)="addItems(bucketlist)">
+                                <md-icon>add</md-icon>
+                                <span>Add Item</span>
+                            </button>
+                            <button md-menu-item (click)="editBucketlist(bucketlist)">
+                                <md-icon>mode_edit</md-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button md-menu-item (click)="deleteBucketlist(bucketlist.id)">
+                                <md-icon>close</md-icon>
+                                <span>Delete</span>
+                            </button>
+                            
+                        </md-menu>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="tab-content">
+                        {{ bucketlist.description }}
+                    </div>    
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">access_time</i> 
+                        Created On: {{ bucketlist.date_created | date: 'dd-MM-yyyy' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <md-paginator [length]="length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="paginateBucketlists($event)">
+        </md-paginator>
     </div>
-</div>
-<div class="col-lg-5">
-    <app-item [bucketlist]="selectedBucketlist"></app-item>
+
+    <div class="col-lg-5">
+        <app-item [items]="bucketlistItems" [bucketlist]="selectedBucketlist"></app-item>
+    </div>
 </div>

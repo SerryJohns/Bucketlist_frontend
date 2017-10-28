@@ -1,26 +1,25 @@
-<button class="btn btn-sm btn-default" (click)="createItemModal.open()">
-  <span class="glyphicon glyphicon-tasks"></span>
-</button>
-<form id="item-form" method="post" (ngSubmit)="createItem.form.valid && submitItem()" #createItem="ngForm" role="form" novalidate>
-  <modal #createItemModal>
-    <modal-header>
-      Create new Bucketlist Item
-    </modal-header>
-    <modal-content>
-      <div class="form-group">
-          <input type="text" [(ngModel)]="model.name" name="name" class="form-control" placeholder="Item name" value=""/>
+<div>
+  <h2 md-dialog-title> {{ title }} </h2>
+  <md-dialog-content>
+    <form id="item-form" method="post" (ngSubmit)="createItem.form.valid && submitItem()" #createItem="ngForm" role="form" novalidate>
+      <md-input-container class="full-width">
+        <input mdInput [(ngModel)]="model.name" name="itemName" placeholder="Item name">
+      </md-input-container>
+      <md-input-container class="full-width">
+        <textarea mdInput [(ngModel)]="model.description" name="description" placeholder="Description"></textarea>
+      </md-input-container>
+      <md-select class="full-width" placeholder="Item Status" [(ngModel)]="model.status" name="status">
+        <md-option [value]="'pending'">Pending</md-option>
+        <md-option [value]="'complete'">Complete</md-option>
+      </md-select>
+      <div *ngIf="errMsg" class="alert alert-warning" role="alert">
+        {{ errMsg }}
       </div>
-      <div class="form-group">
-          <textarea [(ngModel)]="model.description" name="description" class="form-control" placeholder="Item Description" value=""></textarea>
-      </div>
-      <div class="form-group">
-          <input type="text" [(ngModel)]="model.status" name="status" class="form-control" placeholder="Item Status" value="">
-      </div>
-      <div class="alert alert-danger" role="alert" *ngIf="errMsg">{{ errMsg }}</div>
-    </modal-content>
-    <modal-footer>
-      <input type="submit" name="item-submit" class="btn btn-success" value="Submit">
-      <button class="btn btn-primary" (click)="createItemModal.close()" #closeBtn>close</button>
-    </modal-footer>
-  </modal>
-</form>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <button md-button (click)="editItem()" *ngIf="data.item">Update</button>
+    <button md-button (click)="submitItem()" *ngIf="!data.item">Submit</button>
+    <button md-button (click)="cancelDialog()">Cancel</button>
+  </md-dialog-actions>
+</div>

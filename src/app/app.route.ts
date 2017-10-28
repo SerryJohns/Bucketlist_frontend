@@ -17,7 +17,10 @@ export const routes: Routes = [
         path: 'login', 
         component: AccountComponent
     },
-    { path: 'register', component: AccountComponent },
+    { 
+        path: 'register', 
+        component: AccountComponent 
+    },
     { 
         path: 'bucketlists', 
         component: BucketlistComponent,

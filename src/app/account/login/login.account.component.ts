@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
         } catch (TypeError) {
           this.errMsg = "";
         }
+        this.router.navigate(['bucketlists']);
       },
       err => {
         if (err.status === 403) {

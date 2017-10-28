@@ -16,8 +16,6 @@ import { RegisterComponent } from './account/register/register.account.component
 import { BucketlistComponent } from './bucketlist/bucketlist.component';
 import { ItemComponent } from './item/item.component';
 import { CreateBucketlistComponent } from './bucketlist/create-bucketlist/create-bucketlist.component';
-import { EditBucketlistComponent } from './bucketlist/edit-bucketlist/edit-bucketlist.component';
-
 
 import { LoginService } from './services/auth/login.service';
 import { RegisterService } from './services/auth/register.service';
@@ -26,8 +24,24 @@ import { BucketlistService } from './services/bucketlist/bucketlist.service';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth/auth.guard';
 import { CreateItemComponent } from './item/create-item/create-item.component';
-import { EditItemComponent } from './item/edit-item/edit-item.component';
 import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
+
+import {
+  MaterialModule,
+  MdMenuModule, 
+  MdButtonModule,
+  MdInputModule,
+  MdCardModule,
+  MdDialogModule,
+  MdCheckboxModule,
+  MdTooltipModule,
+  MdSelectModule,
+  MdPaginatorModule
+} from '@angular/material';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +53,9 @@ import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search
     BucketlistComponent,
     ItemComponent,
     CreateBucketlistComponent,
-    EditBucketlistComponent,
     CreateItemComponent,
-    EditItemComponent,
-    BucketlistSearchComponent
+    BucketlistSearchComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +63,18 @@ import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search
     HttpModule,
     routing,
     ModalModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    MdMenuModule,
+    MdButtonModule,
+    MdInputModule,
+    MdCardModule,
+    MdDialogModule,
+    MdCheckboxModule,
+    MdTooltipModule,
+    MdSelectModule,
+    MdPaginatorModule
       ],
   providers: [
     AuthService,
@@ -60,6 +84,10 @@ import { BucketlistSearchComponent } from './bucketlist-search/bucketlist-search
     RegisterService,
     GetUsersService,
     BucketlistService
+    ],
+    entryComponents: [
+      CreateBucketlistComponent,
+      CreateItemComponent
     ],
   bootstrap: [ AppComponent ]
 })

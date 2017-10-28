@@ -16,8 +16,10 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     if (this.router.url === "/login") {
       this.displayLogin = true;
+      this.displayRegister = false;
     } else if (this.router.url === "/register") {
       this.displayRegister = true;
+      this.displayLogin = false;
     }
   }
 

@@ -1,0 +1,45 @@
+<nav *ngIf="authService.isAuthenticated()">
+    <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+    </button>
+
+    <button md-button>
+        <span>{{ title }}</span>
+    </button>
+
+    <div class="margin-20 pull-right">
+        <button md-button [mdMenuTriggerFor]="profileMenu">
+            Welcome {{ currentUser }}
+        </button>
+    </div>
+
+    <md-menu #menu="mdMenu">
+        <button md-menu-item (click)="createBucketlist()">
+            <md-icon>note_add</md-icon>
+            <span>New Bucketlist</span>
+        </button>
+        <button md-menu-item (click)="authService.logout()">
+            <md-icon>reply</md-icon>
+            <span>Log out</span>
+        </button>
+    </md-menu>
+
+    <md-menu #profileMenu="mdMenu">
+        <span md-menu-item>
+            <md-icon>person</md-icon>
+            <span>{{ currentUser }}</span>
+        </span>
+        <span md-menu-item>
+            <md-icon>email</md-icon>
+            <span>{{ userObj.email }}</span>
+        </span>
+        <span md-menu-item>
+            <md-icon>public</md-icon>
+            <span>{{ userObj.username }}</span>
+        </span>
+        <button md-menu-item (click)="authService.logout()">
+            <md-icon>reply</md-icon>
+            <span>Log out</span>
+        </button>
+    </md-menu>    
+</nav>
